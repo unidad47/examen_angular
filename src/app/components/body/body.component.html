@@ -1,0 +1,178 @@
+
+<h3>Registro</h3>
+<hr>
+<br>
+<form (ngSubmit)="guardar()" #form="ngForm" novalidate>
+
+  <div class="form-group">
+    <label for="nameInput">Nombre(s)</label>
+    <input type="text" class="form-control" id="nameInput" name="nameInput"
+           placeholder="Nombre(s)" minlength="2" maxlength="60"
+           [ngClass]="{ 'is-invalid': (nameInput.errors?.required || nameInput.errors?.minlength) && nameInput.touched }"
+           ngModel [(ngModel)]="prospecto.nombre" required #nameInput="ngModel">
+    <div class="invalid-feedback" *ngIf="nameInput.errors?.required">
+      Este campo es requerido.
+    </div>
+    <div class="invalid-feedback" *ngIf="nameInput.errors?.minlength">
+      Se requieren por lo menos {{ nameInput.errors?.minlength.requiredLength }} caracteres.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lastNameInput">Apellido Paterno</label>
+    <input type="text" class="form-control" id="lastNameInput" name="lastNameInput"
+           placeholder="Apellido Paterno" minlength="2" maxlength="60" required
+           ngModel [(ngModel)]="prospecto.apellidoPaterno" #lastNameInput="ngModel">
+    <div *ngIf="lastNameInput.errors?.required">
+      Este campo es requerido.
+    </div>
+    <div  *ngIf="lastNameInput.errors?.minlength">
+      Se requieren por lo menos {{ lastNameInput.errors?.minlength.requiredLength }} caracteres.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="mNameInput">Apellido Materno</label>
+    <input type="text" class="form-control" id="mNameInput" name="mNameInput"
+           placeholder="Apellido Materno" minlength="2" maxlength="60" required
+           ngModel [(ngModel)]="prospecto.apellidoMaterno" #mNameInput="ngModel">
+    <div *ngIf="mNameInput.errors?.required">
+      Este campo es requerido.
+    </div>
+    <div  *ngIf="mNameInput.errors?.minlength">
+      Se requieren por lo menos {{ mNameInput.errors?.minlength.requiredLength }} caracteres.
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col">
+      <label for="genderSelect">Género</label>
+      <select class="form-control" id="genderSelect" name="genderSelect"  required
+              ngModel [(ngModel)]="prospecto.generoId" #genderSelect="ngModel">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+      <div *ngIf="genderSelect.errors?.required">
+        Este campo es requerido.
+      </div>
+    </div>
+
+    <div class="form-group col">
+      <label for="ageInput">Edad</label>
+      <input type="text" class="form-control" id="ageInput" name="ageInput"
+             placeholder="edad" minlength="1" maxlength="3" required
+             ngModel [(ngModel)]="prospecto.edad" #ageInput="ngModel">
+      <div *ngIf="ageInput.errors?.required">
+        Este campo es requerido.
+      </div>
+      <div  *ngIf="ageInput.errors?.minlength">
+        Se requieren por lo menos {{ ageInput.errors?.minlength.requiredLength }} caracteres.
+      </div>
+    </div>
+
+    <div class="form-group col">
+      <label for="civilStatusSelect">Estado Civil</label>
+      <select class="form-control" id="civilStatusSelect" name="civilStatusSelect"  required
+              ngModel [(ngModel)]="prospecto.estadoCivilId" #civilStatusSelect="ngModel">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+      <div *ngIf="civilStatusSelect.errors?.required">
+        Este campo es requerido.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email1Input">E-mail</label>
+    <input type="email" class="form-control" id="email1Input" name="email1Input"  placeholder="E-mail" maxlength="60"
+           required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+           ngModel [(ngModel)]="prospecto.email" #email1Input="ngModel">
+    <div *ngIf="email1Input.errors?.required">
+      Este campo es requerido.
+    </div>
+    <div *ngIf="email1Input.errors?.pattern">
+      Este campo no tiene el formato requerido.
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label for="passwordInput">Contraseña</label>
+    <input type="password" class="form-control" id="passwordInput" name="passwordInput"  placeholder="Contraseña"
+           minlength="10" maxlength="25" required
+           ngModel [(ngModel)]="prospecto.password" #passwordInput="ngModel">
+    <div *ngIf="passwordInput.errors?.required">
+      Este campo es requerido.
+    </div>
+    <div  *ngIf="passwordInput.errors?.minlength">
+      Se requieren por lo menos {{ passwordInput.errors?.minlength.requiredLength }} caracteres.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="confirmPasswordInput">Confirmar Contraseña</label>
+    <input type="password" class="form-control" id="confirmPasswordInput"
+           name="confirmPasswordInput" placeholder="Confirmar Contraseña" minlength="10" maxlength="25" required
+           ngModel #confirmPasswordInput="ngModel">
+    <div *ngIf="confirmPasswordInput.errors?.required">
+      Este campo es requerido.
+    </div>
+    <div  *ngIf="confirmPasswordInput.errors?.minlength">
+      Se requieren por lo menos {{ confirmPasswordInput.errors?.minlength.requiredLength }} caracteres.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="levelSelect">Nivel De Interés</label>
+    <select class="form-control" id="levelSelect" name="levelSelect"  required
+            ngModel [(ngModel)]="prospecto.nivelId" #levelSelect="ngModel">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+    <div *ngIf="levelSelect.errors?.required">
+      Este campo es requerido.
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label for="bDegreeSelect">Licenciatura</label>
+    <select class="form-control" id="bDegreeSelect" name="bDegreeSelect"
+            [(ngModel)]="prospecto.programaId" ngModel #bDegreeSelect="ngModel">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="postgraduateSelect">Posgrado</label>
+    <select class="form-control" id="postgraduateSelect" name="postgraduateSelect"
+            [(ngModel)]="prospecto.programaId" ngModel #postgraduateSelect="ngModel">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-block" [disabled]="!form.valid">Enviar</button>
+</form>
+
+<pre>
+  {{ prospecto | json}}
+  {{ form.valid }}
+</pre>
+

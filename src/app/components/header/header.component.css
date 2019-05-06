@@ -1,0 +1,33 @@
+button[type=submit] {
+  background-color: #56baed;
+  border: none;
+  color: white;
+  -webkit-box-shadow: 0 10px 30px 0 rgb(0, 0, 0);
+  box-shadow: 0 10px 30px 0 rgba(71, 71, 71, 0.99);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+button[type=submit]:hover {
+  background-color: #39ace7;
+}
+
+button[type=submit]:active {
+  -moz-transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -o-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+.is-active {
+  display: block;
+}
+.hide {
+  display: none;
+}

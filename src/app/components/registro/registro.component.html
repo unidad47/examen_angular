@@ -1,0 +1,231 @@
+
+<h3>Registro</h3>
+<hr>
+<br>
+<form (ngSubmit)="guardar()" [formGroup]="form">
+
+  <div class="form-group">
+    <label for="nameInput">Nombre(s)</label>
+    <input type="text" class="form-control" id="nameInput" name="nameInput"
+           placeholder="Nombre(s)"
+           [ngClass]="{ 'is-invalid': !form.get('nombre').valid &&
+                          form.get('nombre').touched}"
+           formControlName="nombre">
+    <div class="invalid-feedback" *ngIf="form.controls['nombre'].errors?.required" >
+      Este campo es requerido.
+    </div>
+    <div class="invalid-feedback" *ngIf="form.controls['nombre'].errors?.minlength" >
+      Se requieren por lo menos {{ form.controls['nombre'].errors?.
+                                    minlength.requiredLength }} caracteres.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lastNameInput">Apellido Paterno</label>
+    <input type="text" class="form-control" id="lastNameInput" name="lastNameInput"
+           placeholder="Apellido Paterno"
+           [ngClass]="{ 'is-invalid': !form.get('apellidoPaterno').valid &&
+                          form.get('apellidoPaterno').touched }"
+           formControlName="apellidoPaterno">
+    <div class="invalid-feedback" *ngIf="form.controls['apellidoPaterno'].errors?.required">
+      Este campo es requerido.
+    </div>
+    <div   class="invalid-feedback" *ngIf="form.controls['apellidoPaterno'].errors?.minlength">
+      Se requieren por lo menos {{ form.controls['apellidoPaterno'].errors?.
+      minlength.requiredLength }} caracteres.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="mNameInput">Apellido Materno</label>
+    <input type="text" class="form-control" id="mNameInput" name="mNameInput"
+           placeholder="Apellido Materno"
+           [ngClass]="{ 'is-invalid': !form.get('apellidoMaterno').valid &&
+                          form.get('apellidoMaterno').touched }"
+           formControlName="apellidoMaterno">
+    <div class="invalid-feedback" *ngIf="form.controls['apellidoMaterno'].errors?.required">
+      Este campo es requerido.
+    </div>
+    <div   class="invalid-feedback" *ngIf="form.controls['apellidoMaterno'].errors?.minlength">
+      Se requieren por lo menos {{ form.controls['apellidoMaterno'].errors?.
+      minlength.requiredLength }} caracteres.
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-sm">
+      <label for="genderSelect">Género</label>
+      <select class="form-control" id="genderSelect" name="genderSelect"
+              style="background-image: none;"
+              [ngClass]="{ 'is-invalid': !form.get('generoId').valid &&
+                            form.get('generoId').touched }"
+              formControlName="generoId">
+        <option value="0">Slecciona una opción</option>
+        <option *ngFor="let genero of generos"
+                [value]="genero.id"> {{ genero.etiquetaGenero }} </option>
+
+      </select>
+      <div class="invalid-feedback"
+           *ngIf="form.controls['generoId'].errors?.pattern">
+        Este campo es requerido.
+      </div>
+    </div>
+
+    <div class="form-group col-sm">
+      <label for="ageInput">Edad</label>
+      <input type="text" class="form-control" id="ageInput" name="ageInput"
+             placeholder="edad"
+             [ngClass]="{ 'is-invalid': !form.get('edad').valid &&
+                            form.get('edad').touched }"
+             formControlName="edad">
+      <div class="invalid-feedback" *ngIf="form.controls['edad'].errors?.required">
+        Este campo es requerido.
+      </div>
+      <div   class="invalid-feedback" *ngIf="form.controls['edad'].errors?.min">
+        Valor mínimo requerido: {{ form.controls['edad'].errors?.
+        min.min }}
+      </div>
+      <div   class="invalid-feedback" *ngIf="form.controls['edad'].errors?.max">
+        Valor máximo permitido: {{ form.controls['edad'].errors?.
+        max.max }}
+      </div>
+      <div   class="invalid-feedback" *ngIf="form.controls['edad'].errors?.pattern">
+        Solamente se permiten de 2 a 3 dígitos.
+      </div>
+    </div>
+
+    <div class="form-group col-sm">
+      <label for="civilStatusSelect">Estado Civil</label>
+      <select class="form-control" id="civilStatusSelect" name="civilStatusSelect"
+              style="background-image: none;"
+              [ngClass]="{ 'is-invalid': !form.get('estadoCivilId').valid &&
+                              form.get('estadoCivilId').touched }"
+              formControlName="estadoCivilId">
+        <option value="0"> Selecciona una opción </option>
+        <option *ngFor="let estadoCivil of estadosCiviles"
+                [value]="estadoCivil.id"> {{ estadoCivil.etiquetaEdoCivil }} </option>
+
+      </select>
+      <div class="invalid-feedback"
+           *ngIf="form.controls['estadoCivilId'].errors?.pattern">
+        Este campo es requerido.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email1Input">E-mail</label>
+    <input type="email" class="form-control" id="email1Input" name="email1Input"  placeholder="E-mail"
+           [ngClass]="{ 'is-invalid': !form.get('email').valid &&
+                          form.get('email').touched }"
+           formControlName="email">
+    <div class="invalid-feedback" *ngIf="form.controls['email'].errors?.required">
+      Este campo es requerido.
+    </div>
+    <div class="invalid-feedback" *ngIf="form.controls['email'].errors?.pattern">
+      Este campo no tiene el formato requerido.
+    </div>
+    <div class="invalid-feedback" *ngIf="form.controls['email'].errors?.existe">
+      La cuenta de correo ya existe en nuestro sistema.
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label for="passwordInput">Contraseña</label>
+    <input type="password" class="form-control" id="passwordInput" name="passwordInput"  placeholder="Contraseña"
+           [ngClass]="{ 'is-invalid': !form.get('password').valid &&
+                          form.get('password').touched }"
+           formControlName="password">
+    <div class="invalid-feedback" *ngIf="form.controls['password'].errors?.required">
+      Este campo es requerido.
+    </div>
+    <div  class="invalid-feedback" *ngIf="form.controls['password'].errors?.minlength">
+      Se requieren por lo menos {{ form.controls['password'].errors?.
+      minlength.requiredLength }} caracteres.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="confirmPasswordInput">Confirmar Contraseña</label>
+    <input type="password" class="form-control" id="confirmPasswordInput"
+           name="confirmPasswordInput" placeholder="Confirmar Contraseña"
+           [ngClass]="{ 'is-invalid': !form.get('confirmarPassword').valid &&
+                          form.get('confirmarPassword').touched }"
+           formControlName="confirmarPassword">
+    <div class="invalid-feedback" *ngIf="form.controls['confirmarPassword'].errors?.required">
+      Este campo es requerido.
+    </div>
+    <div class="invalid-feedback" *ngIf="form.controls['confirmarPassword'].errors?.noiguales">
+      La contraseña ingresada no concuerda.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="levelSelect">Nivel De Interés</label>
+    <select class="form-control" id="levelSelect" name="levelSelect"
+            style="background-image: none;"
+            [ngClass]="{ 'is-invalid': !form.get('nivelId').valid &&
+                            form.get('nivelId').touched }"
+            formControlName="nivelId">
+      <option value="0">Selecciona una opción</option>
+      <option *ngFor="let nivelInteres of nivelesInteres"
+              [value]="nivelInteres.id"> {{ nivelInteres.etiquetaNivelInt }} </option>
+    </select>
+    <div class="invalid-feedback" *ngIf="form.controls['nivelId'].errors?.pattern">
+      Este campo es requerido.
+    </div>
+
+  </div>
+
+  <div class="form-group" *ngIf="mostrarProgramas && mostrarLic">
+    <label for="bDegreeSelect">Licenciatura</label>
+    <select class="form-control" id="bDegreeSelect" name="bDegreeSelect"
+            style="background-image: none;"
+            [ngClass]="{ 'is-invalid': !form.get('licenciaturaId').valid  &&
+                            form.get('licenciaturaId').touched }"
+            formControlName="licenciaturaId">
+      <option value="0">Selecciona una opción</option>
+      <option *ngFor="let programa of programasLic"
+              [value]="programa.id"> {{ programa.etiquetaPrograma }} </option>
+    </select>
+    <div class="invalid-feedback" *ngIf="form.controls['licenciaturaId'].errors?.pattern">
+      Este campo es requerido.
+    </div>
+  </div>
+
+  <div class="form-group" *ngIf="mostrarProgramas && mostrarPos">
+    <label for="postgraduateSelect">Posgrado</label>
+    <select class="form-control" id="postgraduateSelect" name="postgraduateSelect"
+            style="background-image: none;"
+            [ngClass]="{ 'is-invalid': !form.get('postgraduateId').valid  &&
+                            form.get('postgraduateId').touched }"
+            formControlName="postgraduateId">
+      <option value="0"> Selecciona una opción </option>
+      <option *ngFor="let programa of programasPos"
+              [value]="programa.id"> {{ programa.etiquetaPrograma }} </option>
+    </select>
+    <div class="invalid-feedback" *ngIf="form.controls['postgraduateId'].errors?.pattern">
+      Este campo es requerido.
+    </div>
+  </div>
+  <input type="hidden" formControlName="id">
+  <input type="hidden" formControlName="programaId" value="1">
+  <br>
+  <button type="submit" class="btn btn-primary btn-block"
+          [ngStyle]="{'cursor': form.valid?'pointer':'not-allowed' }"
+          [disabled]="!form.valid">Enviar</button>
+</form>
+<br>
+<br>
+<!--
+<pre>
+  {{mostrarLic}}
+  {{mostrarPos}}
+  {{mostrarProgramas}}
+
+  {{ form.value | json}}
+  {{ prospecto | json}}
+  {{ form.valid }}
+  {{ form.status }}
+</pre>
+-->

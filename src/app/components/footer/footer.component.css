@@ -1,0 +1,27 @@
+/* footer */
+
+.footer-style {
+  padding-top: 16px;
+  background-color: #2C3E50;
+}
+footer {
+  color: white;
+}
+footer h3 {
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+footer .footer-above {
+  padding-top: 16px;
+  background-color: #2C3E50;
+}
+footer .footer-col {
+  margin-bottom: 0px;
+}
+footer .footer-below {
+  padding: 25px 0;
+  background-color: #233140;
+}
+div.row p {
+  width: 100%;
+}
